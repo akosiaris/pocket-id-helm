@@ -61,12 +61,6 @@ The command removes all the Kubernetes components associated with the chart and 
 | livenessProbe.initialDelaySeconds | int | `60` |  |
 | nameOverride | string | `""` | The resource name suffix |
 | nodeSelector | object | `{}` |  |
-| persistence.accessMode | string | `"ReadWriteOnce"` |  |
-| persistence.annotations | object | `{}` |  |
-| persistence.enabled | bool | `true` | Persist data to a persistent volume |
-| persistence.existingClaim | string | `""` | A manually managed Persistent Volume and Claim Requires persistence.enabled: true If defined, PVC must be created manually before volume will be bound |
-| persistence.size | string | `"8Gi"` |  |
-| persistence.storageClass | string | `""` | Persistent Volume Storage Class If defined, storageClassName: <storageClass> If set to "-", storageClassName: "", which disables dynamic provisioning If undefined (the default) or set to null, no storageClassName spec is   set, choosing the default provisioner.  (gp2 on AWS, standard on   GKE, AWS & OpenStack) |
 | podAnnotations | object | `{}` |  |
 | podLabels | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
@@ -84,8 +78,6 @@ The command removes all the Kubernetes components associated with the chart and 
 | serviceAccount.create | bool | `true` | Specifies whether a service account should be created |
 | serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template |
 | tolerations | list | `[]` |  |
-| volumeMounts | list | `[]` | Additional volumeMounts on the pod definition. |
-| volumes | list | `[]` | Additional volumes on the pod definition. |
 
 ### Todo
 

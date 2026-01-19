@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: StatefulSet
+kind: Deployment
 metadata:
   name: {{ include "pocket-id.fullname" . }}
   labels:
@@ -59,21 +59,6 @@ spec:
             {{- toYaml .Values.readinessProbe | nindent 12 }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-          volumeMounts:
-            - name: {{ include "pocket-id.fullname" . }}-data
-              mountPath: /app/data
-            {{- with .Values.volumeMounts }}
-              {{- toYaml . | nindent 12 }}
-            {{- end }}
-      volumes:
-        {{- if and .Values.persistence.enabled .Values.persistence.existingClaim (not .Values.enterprise.enabled) }}
-        - name: {{ include "pocket-id.fullname" . }}-data
-          persistentVolumeClaim:
-            claimName: {{ .Values.persistence.existingClaim }}
-        {{- end }}
-        {{- with .Values.volumes }}
-          {{- toYaml . | nindent 8 }}
-        {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -86,27 +71,3 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-  {{- if and .Values.persistence.enabled (or (not .Values.persistence.existingClaim) .Values.enterprise.enabled) }}
-  volumeClaimTemplates:
-    - metadata:
-        name: {{ include "pocket-id.fullname" . }}-data
-        {{- if .Values.persistence.annotations }}
-        annotations:
-        {{- range $key, $value := .Values.persistence.annotations }}
-          {{ $key }}: "{{ $value }}"
-        {{- end }}
-        {{- end }}
-      spec:
-        accessModes:
-          - {{ .Values.persistence.accessMode | quote}}
-        resources:
-          requests:
-            storage: {{ .Values.persistence.size | quote }}
-      {{- if .Values.persistence.storageClass }}
-      {{- if (eq "-" .Values.persistence.storageClass) }}
-        storageClassName: ""
-      {{- else }}
-        storageClassName: "{{ .Values.persistence.storageClass }}"
-      {{- end }}
-      {{- end }}
-  {{- end }}
