@@ -105,16 +105,13 @@ resources:
   #   memory: 128Mi
 
 livenessProbe:
-  initialDelaySeconds: 60
-  httpGet:
-    # -- Healthcheck endpoint
-    path: /health
+  tcpSocket:
     port: http
 readinessProbe:
   initialDelaySeconds: 60
   httpGet:
     # -- Healthcheck endpoint
-    path: /health
+    path: /healthz
     port: http
 
 persistence:

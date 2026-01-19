@@ -56,16 +56,14 @@ The command removes all the Kubernetes components associated with the chart and 
 | ingress.hosts[0].paths[0].path | string | `"/"` |  |
 | ingress.hosts[0].paths[0].pathType | string | `"Prefix"` |  |
 | ingress.tls | list | `[]` | Adds tls to the ingress |
-| livenessProbe.httpGet.path | string | `"/health"` | Healthcheck endpoint |
-| livenessProbe.httpGet.port | string | `"http"` |  |
-| livenessProbe.initialDelaySeconds | int | `60` |  |
+| livenessProbe.tcpSocket.port | string | `"http"` | liveness probe port |
 | nameOverride | string | `""` | The resource name suffix |
 | nodeSelector | object | `{}` |  |
 | podAnnotations | object | `{}` |  |
 | podLabels | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
 | priorityClassName | string | `""` | Optionally set a priority class name to run the pods |
-| readinessProbe.httpGet.path | string | `"/health"` | Healthcheck endpoint |
+| readinessProbe.httpGet.path | string | `"/healthz"` | Healthcheck endpoint |
 | readinessProbe.httpGet.port | string | `"http"` |  |
 | readinessProbe.initialDelaySeconds | int | `60` |  |
 | resources | object | `{}` | Specifiy resources for the pod |
