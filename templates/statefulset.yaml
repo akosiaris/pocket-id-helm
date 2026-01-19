@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "pocket-id.labels" . | nindent 4 }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicas }}
   selector:
     matchLabels:
       {{- include "pocket-id.selectorLabels" . | nindent 6 }}
