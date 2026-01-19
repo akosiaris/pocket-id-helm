@@ -70,6 +70,7 @@ The command removes all the Kubernetes components associated with the chart and 
 | podAnnotations | object | `{}` |  |
 | podLabels | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
+| priorityClassName | string | `""` | Optionally set a priority class name to run the pods |
 | readinessProbe.httpGet.path | string | `"/health"` | Healthcheck endpoint |
 | readinessProbe.httpGet.port | string | `"http"` |  |
 | readinessProbe.initialDelaySeconds | int | `60` |  |
