@@ -12,7 +12,7 @@ data:
   {{- end }}
   TRUST_PROXY: "true"
   {{- end }}
-  {{- range $key := keys .Values.config }}
+  {{- range $key := keys .Values.config | sortAlpha }}
   {{ $key | snakecase | upper }}: {{ get $.Values.config $key }}
   {{- end }}
 {{- end }}
