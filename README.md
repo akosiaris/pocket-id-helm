@@ -7,11 +7,19 @@
 
 Pocket-id Helm chart for Kubernetes
 
+## Targetting only version 2.x of Pocket-id
+
+This helm chart, while a fork of hobbit44's one, is altered enough to:
+
+* Only target version 2.x of Pocket-id
+* Only support deployments where all data is stored in a remote database
+** Does not use StatefulSets or PVCs
+
 ### Installing the Chart
 To install the chart with the release name my-release:
 
 ```
-helm install my-release oci://ghcr.io/hobbit44/pocket-id-helm/pocket-id
+helm install my-release oci://ghcr.io/akosiaris/pocket-id-helm/pocket-id
 ```
 
 ### Uninstalling the Chart
@@ -26,6 +34,7 @@ The command removes all the Kubernetes components associated with the chart and 
 
 * <https://github.com/pocket-id/pocket-id>
 * <https://github.com/hobbit44/pocket-id-helm>
+* <https://github.com/akosiaris/pocket-id-helm>
 
 ## Values
 
