@@ -5,6 +5,8 @@ metadata:
   labels:
     {{- include "pocket-id.labels" . | nindent 4 }}
 spec:
+  strategy:
+    type: Recreate
   replicas: {{ .Values.replicas }}
   selector:
     matchLabels:
